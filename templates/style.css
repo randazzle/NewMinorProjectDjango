@@ -1,0 +1,106 @@
+*{
+padding :0;
+margin :0;
+text-decoration: none;
+list-style : none;
+box-sizing: border-box;
+}
+body
+{
+    font-family: montserrat;
+
+}
+.logo img{
+    position: absolute;;
+    margin-top: 20px;
+    margin-left: 10px;
+    background-color: white;
+}
+ .topnav 
+{
+    width: 100%;
+    background: solid white;
+    height: 100px;
+    background-color: white;
+}
+nav .topnav label.name
+{
+    color: rgb(18, 56, 94);
+    font-size: 30px;
+    line-height: 150px;
+    padding: 0 100px;
+    font-weight: bolder;
+    position: relative;
+}
+ .topnav  ul#horlist{
+    padding: 0;
+    float: right;
+    margin-right: 100px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+nav .topnav  ul#horlist li {
+    display: inline;
+    line-height: 100px;
+    margin: 0 10px;
+}
+
+nav .topnav  ul li a{
+    color: rgb(5, 5, 5);
+    display: inline;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 3px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+nav .topnav  ul li a.mappic{
+    transition: 5ms;
+}
+nav .topnav ul li a.lang{
+    transition: 5ms;
+}
+ .topnav ul li a.first,a:hover{
+    color: rgb(18, 56, 94);
+    transition: .5s;
+}
+.topnav ul li a.second,a:hover{
+    color: rgb(18, 56, 94);
+    transition: .5s;
+}
+.topnav ul li a.third,a:hover{
+    color: rgb(18, 56, 94);
+    transition: .5s;
+}
+.topnav  ul  .search-container {
+    position: relative;
+}
+.topnav ul .search-container input[type=text] {
+    padding:7px;
+    margin-top: 8px;
+    font-size: 15px;
+    border: none;
+  }
+  
+.topnav ul .search-container button {
+    float:right;
+    padding: 6px 6px;
+    margin-top: 5px;
+    margin-right: 250px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .slideshowcontainer{
+      margin-top: 50px;
+      margin-left: 80px;
+      margin-right: 80px;
+
+  }
+  .slideshowcontainer button{
+    position: relative;
+
+  }
+  

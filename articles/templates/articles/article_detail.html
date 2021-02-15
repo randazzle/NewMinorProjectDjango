@@ -1,0 +1,38 @@
+{% extends 'bs_base_layout.html' %}
+
+{% load static %}
+
+{% block content %}
+<hr class="w-25  mx-auto pt-5">
+<div class="ml-3  mr-3 article-detail">
+	<hr class="w-25 mx-auto pt-5">
+	<h1 class=" mb-3 text-light">{{article.title}}</h1>
+   	<p class="">
+		 {{article.body}}
+  	</p>
+
+		<div class="row mb-5">
+          <div class="col-lg-g col-md-6 ">
+            <img src="{{article.img1.url}}" class="img-fluid mt-5">
+          </div>
+          <div class="col-lg-g col-md-6 ">
+            <p class="mt-5 ">
+							{{article.body}}
+            </p>
+          </div>
+	   </div>
+
+	    <div class="row mb-5">
+	      <div class="col-lg-g col-md-6 ">
+	        <p class="mt-5 ">
+						{{article.body1}}
+	        </p>
+	      </div>
+	      <div class="col-lg-g col-md-6 ">
+					<img src="{{article.img2.url}}" class="img-fluid mt-5">
+	      </div>
+	    </div>
+
+</div>
+
+{% endblock %}

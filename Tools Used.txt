@@ -1,0 +1,9 @@
+Used:
+
+python 3.8.1
+
+django 2.1.5
+
+Bootstrap 4
+
+Atom text editor

@@ -1,0 +1,132 @@
+{% extends 'bs_base_layout.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div id="demo" class="carousel slide" data-ride="carousel">
+<!-- Indicators -->
+<ul class="carousel-indicators">
+  <li data-target="#demo" data-slide-to="0" class="active"></li>
+  <li data-target="#demo" data-slide-to="1"></li>
+  <li data-target="#demo" data-slide-to="2"></li>
+</ul>
+
+<!-- The slideshow -->
+<div class="carousel-inner">
+  <div class="carousel-item active">
+    <img src="{% static 'images/p1.jpg' %}" style="object-fit: cover; height:550px; width:1350px" alt="Bhaktapur Durbar Square">
+    <div class="carousel-caption">
+      <h3>Bhaktapur Durbar Square</h3>
+    </div>
+  </div>
+  <div class="carousel-item">
+    <img src="{% static 'images/p2.jpg' %}" style="object-fit: cover; height:550px; width:1350px" alt="Chitwan NP">
+    <div class="carousel-caption">
+      <h3>Chitwan NP</h3>
+    </div>
+  </div>
+  <div class="carousel-item">
+    <img src="{% static 'images/p3.jpg' %}" style="object-fit: cover; height:550px; width:1350px" alt="Poon Hill">
+    <div class="carousel-caption">
+      <h3>Tilicho Lake</h3>
+    </div>
+  </div>
+</div>
+
+<!-- Left and right controls -->
+<a class="carousel-control-prev" href="#demo" data-slide="prev">
+  <span class="carousel-control-prev-icon"></span>
+</a>
+<a class="carousel-control-next" href="#demo" data-slide="next">
+  <span class="carousel-control-next-icon"></span>
+</a>
+
+ <!-- Article View -->
+
+</div>
+<section class="mb-4 ml-3">
+  <div class="container-fluid">
+      <h1 class="text-center text-light text-capitalizeb pt-5">Most Visited</h1>
+      <hr class="w-25 mx-auto pt-5">
+
+      <!-- Looping for each article saved in the database -->
+      {% for article in articles %}
+
+      <div class="row mb-5">
+        <div class="col-lg-g col-md-6 ">
+          <a href="{% url 'articles:detail' slug=article.slug %}"><img src="{{ article.thumb.url }}" style="object-fit: cover; height:300px; width:600px" class="img-fluid"></a>
+        </div>
+        <div class="col-lg-g col-md-6 ">
+          <h1 class="text-light"><a class="text-light" href="{% url 'articles:detail' slug=article.slug %}" style="text-decoration : none;">{{ article.title }}</a></h1>
+          <p>
+            {{ article.snippet }}
+          </p>
+          <button class="btn bg-dark text-white"><a class="text-light" href="{% url 'articles:detail' slug=article.slug %}">Read More</a></button>
+        </div>
+      </div>
+
+      {% endfor %}
+
+  </div>
+</section>
+
+<!-- Cards -->
+
+  <section class="mb-4 ml-3 mr-3">
+    <div class="container-fluid">
+      <h1 class="text-center text-light text-capitalizeb pt-5">Recommended</h1>
+      <hr class="w-25 mx-auto pt-5">
+      <div class="row ">
+
+        {% for cardd in cards %}
+        <div class="col-lg-4 col-md-4 col-12">
+          <div class="card mb-3" style="width:400px; height: 550px;">
+              <img class="card-img-top" src="{{ cardd.thumb.url }}" alt="Card image" style="height:200px;">
+              <div class="card-body">
+                <h4 class="card-title">{{ cardd.title }}</h4>
+                <p class="card-text">{{ cardd.snippet }}</p>
+                <div class="align-self-start">
+                  <a href="{% url 'articles:detail' slug=cardd.slug %}" class="btn btn-dark">More</a>
+                </div>
+              </div>
+          </div>
+        </div>
+        {% endfor %}
+
+        <!-- <div class="col-lg-4 col-md-4 col-12">
+          <div class="card" style="width:400px">
+              <img class="card-img-top" src="images/p2.jpg" alt="Card image">
+              <div class="card-body">
+                <h4 class="card-title">Chittwan</h4>
+                <p class="card-text">Chitwan National Park (Nepali: à¤šà¤¿à¤¤à¤µà¤¨ à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°à¤¿à¤¯ à¤¨à¤¿à¤•à¥à¤žà¥à¤œ) is the first national park in Nepal. It was established in 1973 and granted the status of a World Heritage Site in 1984. It covers an area of 932 km2 (360 sq mi) and is located in the subtropical Inner Terai lowlands of south-central Nepal in the districts of Nawalpur, Parsa, Chitwan and Makwanpur. In altitude it ranges from about 100 m (330 ft) in the river valleys to 815 m (2,674 ft) in the Churia Hills.
+
+              In the north and west of the protected area the Narayani-Rapti river system forms a natural boundary to human settlements. Adjacent to the east of Chitwan National Park is Parsa National Park, contiguous in the south is the Indian Tiger Reserve Valmiki National Park. The coherent protected area of 2,075 km2 (801 sq mi) represents the Tiger Conservation Unit (TCU) Chitwan-Parsa-Valmiki, which covers a 3,549 km2 (1,370 sq mi) huge block of alluvial grasslands and subtropical moist deciduous forests</p>
+                <a href="#" class="btn btn-dark">More</a>
+              </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-12">
+          <div class="card" style="width:400px">
+              <img class="card-img-top" src="images/p3.jpg" alt="Card image">
+              <div class="card-body">
+                <h4 class="card-title">Chittwan</h4>
+                <p class="card-text">Poon Hill à¤ªà¥‚à¤¨ à¤¹à¤¿à¤² is a Hill station to see the Annapurna Massif range and Dhaulagiri mountain range which is in border of Myagdi District and Kaski District in Gandaki Pradesh of Nepal.People also call it ghorepani Poon hill
+
+            Mountain such as an Annapurna South 7,219 Meter, Machapuchare 6,993 Meter, Hinchuli, Annapurna III, Dhampus peak, Dhulariri II, and many other tall peaks can be seen from here.
+
+            This is located 270 km west from Kathmandu (The capital of Nepal). People hike to Poon Hill from Pokhara which takes 2â€“3 days depending on their strength to see the beautiful Himalayan Range.
+
+            The Poon Hill viewpoint is on the way to Annapurna Sanctuary which lies in the centre of Annapurna Conservation Area. Trekkers need to take the ACCAP Permit from Kathmandu</p>
+                <a href="#" class="btn btn-dark">More</a>
+              </div>
+          </div>
+        </div> -->
+
+      </div>
+    </div>
+
+  </section>
+
+{% endblock %}
