@@ -2,22 +2,28 @@
 
 {% block content %}
 <div class="w-50 mx-auto">
-  <div class="jumbotron mt-5 bg-dark text-center text-light">
-          <h1>Login In</h1>
+  <div >
+          <div  style="background-image: linear-gradient(to right,silver, rgb(0, 0, 0,0) ); height: 2px; margin: 10px ;margin-top: 54px;margin-left: -3px;">
+            <hr style="opacity: 0;">
+          </div>
+          <h1 style="color: silver;"> Login In</h1>
+          <div  style="background-image: linear-gradient(to right,silver, rgb(0, 0, 0,0) ); height: 2px; margin: px;margin-left: -3px;">
+                  <hr style="opacity: 0;">
+          </div>
 
   </div>
 
   <!-- <hr class="w-25 mx-auto pt-5"> -->
 
-  <div class="container bg-light mb-4" style="border-width:5px; border-style: outset;">
+  <div class="" style="">
     <div class="">
 
-      <form class="site-form form-control mt-5 mb-3 bg-light" style="border-style: none" action="{% url 'accounts:login' %}" method="post">
+      <form class="site-form form-control  bg-light" style="border-top-left-radius:0;border-top-right-radius:0; color: black; margin-top: 5px; border-bottom-right-radius: 25px;border-bottom-left-radius: 25px;" action="{% url 'accounts:login' %}" method="post">
 
         {% csrf_token %}
         {{ form.as_p }}
         <center>
-          <button type="submit" class="btn btn-dark">Login</button>
+          <button type="submit" class="btn " style="background-color: black;color: silver;">Login</button>
         </center>
 
       </form>
