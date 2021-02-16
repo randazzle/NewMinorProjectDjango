@@ -4,6 +4,15 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 # Custom forms
 
+preference_choices = (
+    (1, "Adventure"),
+    (2, "Relaxation"),
+    (3, "Nature"),
+    (4, "Architecture"),
+    (5, "Historical"),
+    (6, "Religious")
+)
+
 class RegistrationForm(UserCreationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
     first_name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}), max_length = 30, required = False)
@@ -11,19 +20,21 @@ class RegistrationForm(UserCreationForm):
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}), label=("Password"))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}), label=("Confirm Password"))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}))
+    preferences = forms.MultipleChoiceField(widget = forms.CheckboxSelectMultiple, choices= preference_choices)
 
     # email = forms.EmailField(max_length=254, help_text ='Required. Inform a valid email address')         WRONG LAYOUT FORMAT
 
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = (
+        fields = [
             'username',
             'first_name',
             'last_name',
             'email',
             'password1',
             'password2',
-        )
+            'preferences',
+        ]
 
     def save(self, commit = True):
         user = super(RegistrationForm, self).save(commit = False)
@@ -32,6 +43,7 @@ class RegistrationForm(UserCreationForm):
         user.email      = self.cleaned_data['email']
         user.password1  = self.cleaned_data['password1']
         user.password2  = self.cleaned_data['password2']
+        user.preferences  = self.cleaned_data['preferences']
 
         if commit:
             user.save()

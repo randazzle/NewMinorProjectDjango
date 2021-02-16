@@ -67,6 +67,12 @@
         <a class="nav-link" href="#">About us</a>
       </li>
 
+	   <li class="nav-item">
+	   {% if user.is_authenticated %}
+         <a class="nav-link" href="#">{{ user.username }}</a>
+		{% endif %}
+      </li>
+
 			<!-- Dropdown
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -82,11 +88,11 @@
 
 			{% if user.is_authenticated %}
 			<li class="nav-item">
-        <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
-					{% csrf_token %}
-					<center><button type="submit" class="text-da btn btn-outline-danger my-2 my-sm-0" style="background:none; cursor:pointer; border:0;">Log out</button></center>
-        </form>
-      </li>
+				<form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+						{% csrf_token %}
+						<center><button type="submit" class="text-da btn btn-outline-danger my-2 my-sm-0" style="background:none; cursor:pointer; border:0;">Log out</button></center>
+				</form>
+      		</li>
 			{% else %}
 				<li class="nav-item">
 	        <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
