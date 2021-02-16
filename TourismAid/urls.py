@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from articles import views as article_views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('about/', views.about),

@@ -3,8 +3,15 @@
 {% block content %}
 <div class="w-50 mx-auto">
 
-  <div class="jumbotron mt-5 mb-5 bg-dark text-center text-light">
-          <h1>Sign Up</h1>
+  <div class="">
+    
+    <div  style="background-image: linear-gradient(to right,silver, rgb(0, 0, 0,0) 50%); height: 2px; margin: 10px ;margin-top: 54px;margin-left: -3px;">
+      <hr style="opacity: 0;">
+    </div>      
+    <h1 style="color: silver;">Sign Up</h1>
+          <div  style="background-image: linear-gradient(to right,silver, rgb(0, 0, 0,0) 50%); height: 2px; margin: px;margin-left: -3px;">
+            <hr style="opacity: 0;">
+    </div>
   </div>
 
   <!-- <hr class="w-25 mx-auto pt-5"> -->
@@ -27,9 +34,9 @@
 
   </form> -->
 
-  <div class="container bg-light mb-4" style="border-width:5px; border-style: outset;">
+  <div class="" style="">
     <div class="">
-      <form class="site-form form-control bg-light mt-5 mb-3" style="border-style: none" action="/accounts/signup/" method="post">
+      <form class="site-form form-control " style="border-top-left-radius:0;border-top-right-radius:0; margin-top: 5px; border-bottom-left-radius: 25px; border-bottom-right-radius: 25px;" action="/accounts/signup/" method="post">
 
         {% csrf_token %}
         <!-- {% for field in form %}
@@ -38,7 +45,7 @@
 
         {{ form.as_p }}
         <!-- <input type="submit" value="Signup"> -->
-        <center><button type="submit" class="btn btn-dark">Submit</button></center>
+        <center><button type="submit" class="btn btn-dark" style="background-color: black; color:silver;">Submit</button></center>
       </form>
     </div>
   </div>
