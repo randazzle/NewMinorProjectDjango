@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 def home(request):
-    return render(request, 'bs_base_layout.html')
+    return render(request, 'home.html')
 
 def about(request):	# *args, **kwargs
 	return render(request, 'about_us.html')

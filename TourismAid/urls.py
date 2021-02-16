@@ -9,11 +9,12 @@ from articles import views as article_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('about/', views.about),
+    path('about', views.about),
     path('accounts/', include('accounts.urls')),
     path('articles/', include('articles.urls')),
-    path('contact/', views.contact),
-    path('', article_views.article_list, name = "home"),
+    path('contact', views.contact),
+    path('home', article_views.article_list, name = "articles"),
+    path('', views.home, name = "home"),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

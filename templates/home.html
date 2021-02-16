@@ -1,0 +1,10 @@
+{% extends 'bs_base_layout.html' %}
+
+{% block content %}
+<ul>
+    {% comment %} yo hello wala line chahi nav bar ko pachadi airachha hai kina ho, tesaile landing page ma dekhdaina {% endcomment %}
+    <h1>hello></h1>
+    <li><a class="nav-link" href="{% url 'accounts:login' %}">Login</a></li>
+    <li><a class="nav-link" href="{% url 'accounts:signup' %}">Signup</a></li>
+</ul>
+{% endblock %}
