@@ -1,10 +1,26 @@
 {% extends 'bs_base_layout.html' %}
-
+{% load static %}
 {% block content %}
-<ul>
+<link rel="stylesheet" href="{% static 'Home.css' %}">
+<ul style="text-align:center;margin-top: 50px; padding: 15px;">
     {% comment %} yo hello wala line chahi nav bar ko pachadi airachha hai kina ho, tesaile landing page ma dekhdaina {% endcomment %}
-    <h1>hello></h1>
-    <li><a class="nav-link" href="{% url 'accounts:login' %}">Login</a></li>
-    <li><a class="nav-link" href="{% url 'accounts:signup' %}">Signup</a></li>
+    <a class="navbar-brand" href="{% url 'articles' %}">
+        <img src="{% static 'intro.png'%}"  style="height: 150px;" alt="">
+        </a>
+        <h5 style="padding-top: 6px;padding-left:5px ; color: silver;">'Get Travel Recommendations'</h4>
+<div  style=" opacity: 0.1; background-image: linear-gradient(to right,rgb(0, 0, 0,0), silver 50%, rgb(0, 0, 0,0)); height: 2px;margin: 10px;">
+  <hr style="opacity: 0;">
+</div>
+<p style=" margin: 10px; color:silver">With this app Travellers will be able to get response to their queries and also get the facilities and information anytime and anywhere. This will also help in enhancing local tourism industries which can provide the travellers the new experience of different traditions and cultures. The suggestions of various tourism sites whether it is for a religious tourism or sport tourism can be easily obtained within few minutes. This app will reduce the time taken to complete tasks while improving the accuracy of processes and outcomes. It provides recommendations to the customer based on his search history and past purchase history
+  Furthermore, event notifications of nearby places can be easily done using this app. At the testing stage, the scope of this project primarily focuses on the travellers to provide them information about tourist destinations in Nepal along with the various activities that can be done in various places and also recommend nearby hotels, spas, resort, medical facilities.
+  </p>
+  
+        <li><a class="nav-link" href="{% url 'accounts:login' %}" style=" margin: 3px; padding: 15px; background: linear-gradient(to right, black,black, silver 50%, black , black ); color: black;">Login</a></li>
+    
+    <li><a class="nav-link " href="{% url 'accounts:signup' %}"style=" padding: 15px; background: linear-gradient(to right, black,black, silver 50%, black , black ); color: black;">Signup</a></li>
+    
 </ul>
+<div class="home">
+    <a class="nav-link" href="{% url 'articles' %}" style="color: silver;">GO TO HOMEPAGE</a>
+</div>
 {% endblock %}
