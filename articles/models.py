@@ -21,7 +21,7 @@ class Article(models.Model):
     thumb = models.ImageField(default = 'default.jpg', blank = True)
     img1 = models.ImageField(default = 'default.jpg', blank = True)
     img2 = models.ImageField(default = 'default.jpg', blank = True)
-    tags = MultiSelectField(choices= preference_choices, default=("1","Adventure"))
+    tags = MultiSelectField(choices= preference_choices, default=(1, "Adventure"))
     # add author name
 
     def __str__(self):

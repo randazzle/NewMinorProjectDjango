@@ -12,7 +12,7 @@ def signup_view(request):
             #log the user in
             user = form.save()
             user.refresh_from_db()
-            user.preferences = form.cleaned_data.get('preferences')
+            user.profile.preferences = form.cleaned_data.get('preferences')
             user.save()
             login(request, user)
             return redirect('articles:list')
