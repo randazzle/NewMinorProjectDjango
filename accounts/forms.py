@@ -5,12 +5,12 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 # Custom forms
 
 preference_choices = (
-    (1, "Adventure"),
-    (2, "Relaxation"),
-    (3, "Nature"),
-    (4, "Architecture"),
-    (5, "Historical"),
-    (6, "Religious")
+    ("Adventure", "Adventure"),
+    ("Relaxation", "Relaxation"),
+    ("Nature", "Nature"),
+    ("Architecture", "Architecture"),
+    ("Historical", "Historical"),
+    ("Religious", "Religious")
 )
 
 class RegistrationForm(UserCreationForm):

@@ -2,12 +2,12 @@ from django.db import models
 from multiselectfield import MultiSelectField
 
 preference_choices = (
-    ("1", "Adventure"),
-    ("2", "Relaxation"),
-    ("3", "Nature"),
-    ("4", "Architecture"),
-    ("5", "Historical"),
-    ("6", "Religious")
+    ("Adventure", "Adventure"),
+    ("Relaxation", "Relaxation"),
+    ("Nature", "Nature"),
+    ("Architecture", "Architecture"),
+    ("Historical", "Historical"),
+    ("Religious", "Religious")
 )
 
 # Create your models here.
@@ -21,7 +21,7 @@ class Article(models.Model):
     thumb = models.ImageField(default = 'default.jpg', blank = True)
     img1 = models.ImageField(default = 'default.jpg', blank = True)
     img2 = models.ImageField(default = 'default.jpg', blank = True)
-    tags = MultiSelectField(choices= preference_choices, default=(1, "Adventure"))
+    tags = MultiSelectField(choices= preference_choices, default=(1, "Adventure"), blank=False)
     # add author name
 
     def __str__(self):

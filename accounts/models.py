@@ -6,12 +6,12 @@ from multiselectfield import MultiSelectField
 from django.core.exceptions import ObjectDoesNotExist
 
 preference_choices = (
-    (1, "Adventure"),
-    (2, "Relaxation"),
-    (3, "Nature"),
-    (4, "Architecture"),
-    (5, "Historical"),
-    (6, "Religious")
+    ("Adventure", "Adventure"),
+    ("Relaxation", "Relaxation"),
+    ("Nature", "Nature"),
+    ("Architecture", "Architecture"),
+    ("Historical", "Historical"),
+    ("Religious", "Religious")
 )
 
 
