@@ -2,9 +2,6 @@ from django.shortcuts import render
 from .models import Article
 from accounts.models import Profile
 from django.http import HttpResponse
-import pandas as pd
-import numpy as np
-import sqlite3
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -83,7 +80,7 @@ def article_list(request):	# *args, **kwargs
         cosine_sim_list = [None] * len(all_articles)
         for art in count_matrix:
             cosine_sim = cosine_similarity(user_count_matrix[1], count_matrix[i])
-            # print("Cosine Similarity: ",i, " : ", cosine_sim)
+            print("Cosine Similarity: ",i, " : ", cosine_sim)
             cosine_sim_list[i] = cosine_sim
             i = i + 1
         
