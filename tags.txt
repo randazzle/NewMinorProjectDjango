@@ -1,0 +1,13 @@
+adventure=[ rafting bunjee , paragliding , boating]
+historical
+cultural
+relaxation 
+roadtrip
+wild-life
+religious
+1 day
+sightseeing
+treaking/hiking
+
+
+
