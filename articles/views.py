@@ -101,6 +101,7 @@ def article_list(request):	# *args, **kwargs
                 break
 
         print("Recommended articles:",Recommended_articles)
+        return render(request, 'articles/article_list.html', context={'articles':articles, 'cards':cards, 'recommend':Recommended_articles})
 
         # cosine_sim = cosine_similarity(count_matrix[3],count_matrix[1])
         # print("Cosine Similarity: ",cosine_sim)
@@ -117,8 +118,8 @@ def article_list(request):	# *args, **kwargs
         #     user_preferences = current_user.Profile.preferences
         #     cosine_sim = cosine_similarity(article_tags, user_preferences)
 
-
-    return render(request, 'articles/article_list.html', context={'articles':articles, 'cards':cards, 'recommend':Recommended_articles})
+    else:
+        return render(request, 'articles/article_list.html', context={'articles':articles, 'cards':cards})
 
 def article_detail(request, slug):
     #return HttpResponse(slug)
