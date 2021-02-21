@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'Home.css' %}">
-<ul style="text-align:center;margin-top: 50px; padding: 15px;">
+<ul style="text-align:center;margin-top: 50px; padding: 0px;">
     {% comment %} yo hello wala line chahi nav bar ko pachadi airachha hai kina ho, tesaile landing page ma dekhdaina {% endcomment %}
     <a class="navbar-brand" href="{% url 'articles' %}">
         <img src="{% static 'intro.png'%}"  style="height: 150px;" alt="">
@@ -14,13 +14,22 @@
 <p style=" margin: 10px; color:silver">With this app Travellers will be able to get response to their queries and also get the facilities and information anytime and anywhere. This will also help in enhancing local tourism industries which can provide the travellers the new experience of different traditions and cultures. The suggestions of various tourism sites whether it is for a religious tourism or sport tourism can be easily obtained within few minutes. This app will reduce the time taken to complete tasks while improving the accuracy of processes and outcomes. It provides recommendations to the customer based on his search history and past purchase history
   Furthermore, event notifications of nearby places can be easily done using this app. At the testing stage, the scope of this project primarily focuses on the travellers to provide them information about tourist destinations in Nepal along with the various activities that can be done in various places and also recommend nearby hotels, spas, resort, medical facilities.
   </p>
-  
-        <li><a class="nav-link" href="{% url 'accounts:login' %}" style=" margin: 3px; padding: 15px; background: linear-gradient(to right, black,black, silver 50%, black , black ); color: black;">Login</a></li>
-    
-    <li><a class="nav-link " href="{% url 'accounts:signup' %}"style=" padding: 15px; background: linear-gradient(to right, black,black, silver 50%, black , black ); color: black;">Signup</a></li>
-    
+    <div  style=" opacity: 0.6; background-image: linear-gradient(to right,rgb(0, 0, 0,0),rgb(0, 0, 0,0)35%, silver 50%,rgb(0, 0, 0,0)65%, rgb(0, 0, 0,0)); height: 2px;">
+      <hr style="opacity: 0;">
+    </div>
+    <li><a class="nav-link " onmouseover=" this.style.color='black'; style.background ='linear-gradient(to right,rgb(0, 0, 0,0),rgb(0, 0, 0,0)35%, silver 50%,rgb(0, 0, 0,0)65%, rgb(0, 0, 0,0))'" href="{% url 'accounts:login' %}" onmouseout="this.style.color='silver'; style.background ='black'" style="  padding: 15px ; margin-bottom: -14px; color: silver; ">Login</a></li>
+          
+    <div  style=" opacity: 0.6; background-image: linear-gradient(to right,rgb(0, 0, 0,0),rgb(0, 0, 0,0)35%, silver 50%,rgb(0, 0, 0,0)65%, rgb(0, 0, 0,0)); height: 2px;margin-top: -3px; ">
+      <hr style="opacity: 0;">
+    </div>            
+    <li><a class="nav-link "onmouseover=" this.style.color='black'; style.background ='linear-gradient(to right,rgb(0, 0, 0,0),rgb(0, 0, 0,0)35%, silver 50%,rgb(0, 0, 0,0)65%, rgb(0, 0, 0,0))'" href="{% url 'accounts:login' %}" onmouseout="this.style.color='silver'; style.background ='black'" href="{% url 'accounts:signup' %}"style=" padding: 15px; margin-bottom:-13px; color:silver; ">Signup</a></li>
+    <div  style=" margin-top: -4px; opacity: 0.6; background-image: linear-gradient(to right,rgb(0, 0, 0,0),rgb(0, 0, 0,0)35%, silver 50%,rgb(0, 0, 0,0)65%, rgb(0, 0, 0,0)); height: 2px;">
+      <hr style="opacity: 0;">
+    </div>
 </ul>
-<div class="home">
-    <a class="nav-link" href="{% url 'articles' %}" style="color: silver;">GO TO HOMEPAGE</a>
-</div>
+ 
+<div onmouseover="this.style.color='black'; style.background ='silver' " onmouseout="style.background ='black'; this.style.border= '2px solid silver'  " class="home">
+        <a class="nav-link" onmouseover="this.style.color='black';" onmouseout="this.style.color='silver';" href="{% url 'articles' %}" style="color: silver;">GO TO HOMEPAGE</a>
+</div>  
+
 {% endblock %}
