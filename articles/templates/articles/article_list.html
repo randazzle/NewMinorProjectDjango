@@ -19,13 +19,14 @@
 </ul>
 
 <!-- The slideshow -->
-<div class="carousel-inner" style="box-shadow:         inset 5px 5px 10px #000000;">
-  <div class="carousel-item active">
-    <img class="d-block w-100" src="{% static 'images/p1.jpg' %}" style="object-fit: cover; " alt="Bhaktapur Durbar Square">
-    <div class="carousel-caption">
-      <h3>Bhaktapur Durbar Square</h3>
+
+  <div class="carousel-inner" style="box-shadow:         inset 5px 5px 10px #000000;">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="{% static 'images/p1.jpg' %}" style="object-fit: cover; " alt="Bhaktapur Durbar Square">
+      <div class="carousel-caption">
+        <h3>Bhaktapur Durbar Square</h3>
+      </div>
     </div>
-  </div>
   <div class="carousel-item">
     <img class="d-block w-100 "  src="{% static 'images/p2.jpg' %}" style="object-fit: cover;  " alt="Chitwan NP">
     <div class="carousel-caption">
@@ -97,7 +98,7 @@
         {% comment %} RECOMMENDED ARTICLES {% endcomment %}
         {% if user.is_authenticated %}
           {% for rec in recommend %}
-          <div class="col-lg-4 col-md-4 col-12" style="margin: 10px;">
+          <div class="col-lg-4 col-md-4 col-12" >
             <div class="card mb-3" style="width:400px; height: 550px;border-radius: 50px;">
                 <img class="card-img-top" src="{{ rec.thumb.url }}" alt="Card image" style="height:200px; border-radius:50px;border-bottom-left-radius:00px;box-shadow: 2px 3px 5px rgb(49, 49, 49);  ">
                 <div class="card-body">
@@ -151,7 +152,7 @@
     </div>
 
   </section>
-  <section class="mb-4 ml-3" style="margin: 13px;">
+  <section class="mb-4 ml-3" style="margin: 22px;">
     <div class="container-fluid">
       <div  style="background-image: linear-gradient(to right, rgb(0, 0, 0,0),silver, rgb(0, 0, 0,0)); height: 2px;margin-top: 10px;margin-bottom: 10px;">
         <hr style="opacity: 0;">

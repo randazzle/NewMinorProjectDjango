@@ -3,30 +3,40 @@
 {% load static %}
 
 {% block content %}
-<hr class="w-25  mx-auto pt-5" >
-<div class="ml-3  mr-3 article-detail" >
-	<hr class="w-25 mx-auto pt-5"style="color:white;">
-	<h1 class=" mb-3 text-light">{{article.title}}</h1>
+
+<div class="ml-3  mr-3 article-detail">
+	<div  style=" background-image: linear-gradient(to right,silver, rgb(0, 0, 0,0) 50%); height: 2px; ;margin-left: -3px;">
+		<hr style="opacity: 0;">
+	</div>
+	<h1 class=" mb-3 text-light" style="margin-top: 45px; margin-left: 20px;">{{article.title}}</h1>
 	<div  style="background-image: linear-gradient(to right,silver, rgb(0, 0, 0,0) 50%); height: 2px; margin: 10px;margin-left: -3px;">
                   <hr style="opacity: 0;">
-                </div>
-   	<p class="" style="color: silver;" style="margin: 13px;">
+    </div>
+<div style="position: relative;">
+	<img src="{{ article.thumb.url }}" style="width:100%; height: 83vh; object-fit: cover;" class="img-fluid">
+	<div style="position: absolute;bottom: 0;height:20%; width: 100%; background:linear-gradient(to top, black , transparent);">
+		<hr style="opacity: 1;">
+	</div>
+          
+</div>
+
+   	<p class="" style="color: silver; margin: 20px;">
 		 {{article.body}}
   	</p>
 
 		<div class="row mb-5">
-          <div class="col-lg-g col-md-6 ">
-            <img src="{{article.img1.url}}" class="img-fluid mt-5">
+          <div class="col-lg-g col-md-6 "s >
+            <img src="{{article.img1.url}}" class="img-fluid mt-5" style="margin-left:20px ;border-radius: 5px;box-shadow: 2px 3px 20px rgb(53, 52, 52); ">
 			
           </div>
           <div class="col-lg-g col-md-6 ">
-            <p class="mt-5 "style="color: silver;">
+            <p class="mt-5 "style="color: silver; margin:20px;">
 							{{article.body}}
             </p>
           </div>
 	   </div>
 
-	    <div class="row mb-5">
+	    <!-- <div class="row mb-5">
 	      <div class="col-lg-g col-md-6 ">
 	        <p class="mt-5 "style="color: silver;">
 						{{article.body1}}
@@ -35,7 +45,7 @@
 	      <div class="col-lg-g col-md-6 ">
 					<img src="{{article.img2.url}}" class="img-fluid mt-5">
 	      </div>
-	    </div>
+	    </div> -->
 
 </div>
 
