@@ -28,8 +28,10 @@
     </div>
 </ul>
 
-<div onmouseover="this.style.color='black'; style.background ='silver' " onmouseout="style.background ='black'; this.style.border= '2px solid silver'  " class="home"style="width:11%; margin:auto; border-radius:10px; border: '2px solid silver'" >
-        <a class="nav-link" onmouseover="this.style.color='black';" style="text-align: center;color: silver; " onmouseout="this.style.color='silver';" href="{% url 'articles' %}" style="color: silver; border:2px sold silver ;">GO TO HOMEPAGE</a>
+<div onmouseover="this.style.color='black'; style.background ='silver' " onmouseout="style.background ='black'; this.style.border= '2px double silver' "  style="width:10%; margin:auto; border-radius:10px; border: '2px solid silver'" >
+        <div style="border: 2px solid silver; border-radius: 10px;width: 100%;" onmouseout="style.border='0px solid black' " >
+          <a class="nav-link" onmouseover="this.style.color='black';" style="text-align: center;color: silver; " onmouseout="this.style.color='silver';" href="{% url 'articles' %}" style="color: silver; ">GO TO HOMEPAGE</a>
+        </div>
 </div>    
 
 {% endblock %}
