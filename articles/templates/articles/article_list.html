@@ -19,13 +19,14 @@
 </ul>
 
 <!-- The slideshow -->
-<div class="carousel-inner" style="box-shadow:         inset 5px 5px 10px #000000;">
-  <div class="carousel-item active">
-    <img class="d-block w-100" src="{% static 'images/p1.jpg' %}" style="object-fit: cover; " alt="Bhaktapur Durbar Square">
-    <div class="carousel-caption">
-      <h3>Bhaktapur Durbar Square</h3>
+
+  <div class="carousel-inner" style="box-shadow:         inset 5px 5px 10px #000000;">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="{% static 'images/p1.jpg' %}" style="object-fit: cover; " alt="Bhaktapur Durbar Square">
+      <div class="carousel-caption">
+        <h3>Bhaktapur Durbar Square</h3>
+      </div>
     </div>
-  </div>
   <div class="carousel-item">
     <img class="d-block w-100 "  src="{% static 'images/p2.jpg' %}" style="object-fit: cover;  " alt="Chitwan NP">
     <div class="carousel-caption">
@@ -51,16 +52,16 @@
  <!-- Article View -->
 
 </div>
-<div  style="background-image: linear-gradient(to right, silver, rgb(0, 0, 0,0)30%); height: 2px;margin: 10px;">
+<!-- <div  style="background-image: linear-gradient(to right, silver, rgb(0, 0, 0,0)30%); height: 2px;margin: 10px;">
   <hr style="opacity: 0;">
 </div>
 <h4 style="padding-top: 6px;padding-left:5px ; color: silver;">'Tourism-Aid'</h4>
 <div  style="background-image: linear-gradient(to right, silver, rgb(0, 0, 0,0)30%); height: 2px;margin: 10px;">
   <hr style="opacity: 0;">
-</div>
-<p style=" margin: 10px; color:silver">With this app Travellers will be able to get response to their queries and also get the facilities and information anytime and anywhere. This will also help in enhancing local tourism industries which can provide the travellers the new experience of different traditions and cultures. The suggestions of various tourism sites whether it is for a religious tourism or sport tourism can be easily obtained within few minutes. This app will reduce the time taken to complete tasks while improving the accuracy of processes and outcomes. It provides recommendations to the customer based on his search history and past purchase history
+</div> -->
+<!-- <p style=" margin: 10px; color:silver">With this app Travellers will be able to get response to their queries and also get the facilities and information anytime and anywhere. This will also help in enhancing local tourism industries which can provide the travellers the new experience of different traditions and cultures. The suggestions of various tourism sites whether it is for a religious tourism or sport tourism can be easily obtained within few minutes. This app will reduce the time taken to complete tasks while improving the accuracy of processes and outcomes. It provides recommendations to the customer based on his search history and past purchase history
   Furthermore, event notifications of nearby places can be easily done using this app. At the testing stage, the scope of this project primarily focuses on the travellers to provide them information about tourist destinations in Nepal along with the various activities that can be done in various places and also recommend nearby hotels, spas, resort, medical facilities.
-  </p>
+  </p> -->
   
 
 <!-- Cards -->
@@ -97,24 +98,19 @@
         {% comment %} RECOMMENDED ARTICLES {% endcomment %}
         {% if user.is_authenticated %}
           {% for rec in recommend %}
-            <div class="col-lg-4 col-md-4 col-12">
-              <div class="card mb-3" style="width:400px; height: 550px;border-radius: 50px;">
-                  <img class="card-img-top" src="{{ rec.thumb.url }}" alt="Card image" style="height:200px; border-radius:50px;border-bottom-left-radius:00px;box-shadow: 2px 3px 5px rgb(49, 49, 49);  ">
-                  <div class="card-body">
-                    <h4 class="card-title">{{ rec.title }}</h4>
-                    <div  style="background-image: linear-gradient(to right,rgb(0, 0, 0), rgb(0, 0, 0,0)); height: 2px; margin: 10px;margin-left: -3px;">
-                      <hr style="opacity: 0;">
-                    </div>
-                    <p class="card-text">{{ rec.snippet }}</p>
-                    <div class="align-self-start">
-                      <a href="{% url 'articles:detail' slug=rec.slug %}" class="btn btn-dark stretched-link">More</a>
-                    </div>
+          <div class="col-lg-4 col-md-4 col-12" >
+            <div class="card mb-3" style="width:400px; height: 550px;border-radius: 50px;">
+                <img class="card-img-top" src="{{ rec.thumb.url }}" alt="Card image" style="height:200px; border-radius:50px;border-bottom-left-radius:00px;box-shadow: 2px 3px 5px rgb(49, 49, 49);  ">
+                <div class="card-body">
+                  <h4 class="card-title">{{ rec.title }}</h4>
+                  <div  style="background-image: linear-gradient(to right,rgb(0, 0, 0), rgb(0, 0, 0,0)); height: 2px; margin: 10px;margin-left: -3px;">
+                    <hr style="opacity: 0;">
                   </div>
               </div>
             </div>
           {% endfor %}
         {% else %}
-          <h4>Please Sign In to see personalised recommendations</h4>
+          <h5 style="margin: auto ;"> **Please Sign In to see personalised recommendations**</h4>
         {% endif %}
 
         <!-- <div class="col-lg-4 col-md-4 col-12">
@@ -151,7 +147,7 @@
     </div>
 
   </section>
-  <section class="mb-4 ml-3">
+  <section class="mb-4 ml-3" style="margin: 22px;">
     <div class="container-fluid">
       <div  style="background-image: linear-gradient(to right, rgb(0, 0, 0,0),silver, rgb(0, 0, 0,0)); height: 2px;margin-top: 10px;margin-bottom: 10px;">
         <hr style="opacity: 0;">
