@@ -4,6 +4,7 @@ from accounts.models import Profile
 from django.http import HttpResponse
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 user_preference_choices = [
     "Adventure",
@@ -128,3 +129,17 @@ def article_detail(request, slug):
     #return HttpResponse(slug)
     article = Article.objects.get(slug=slug)
     return render(request, 'articles/article_detail.html', {'article':article})
+
+def all_articles(request):	# *args, **kwargs
+    articles_list = Article.objects.all().order_by('-date')
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(articles_list, 5)
+    try:
+        articles = paginator.page(page)
+    except PageNotAnInteger:
+        articles = paginator.page(1)
+    except EmptyPage:
+        articles = paginator.page(paginator.num_pages)
+
+    return render(request, 'articles/all_articles.html', context={'articles':articles})

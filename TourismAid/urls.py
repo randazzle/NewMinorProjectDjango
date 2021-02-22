@@ -15,6 +15,7 @@ urlpatterns = [
     path('contact', views.contact),
     path('home', article_views.article_list, name = "articles"),
     path('', views.home, name = "home"),
+    path('all-articles/', article_views.all_articles, name = "all_articles"),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
