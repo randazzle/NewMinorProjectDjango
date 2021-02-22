@@ -7,11 +7,15 @@ from django.core.exceptions import ObjectDoesNotExist
 
 preference_choices = (
     ("Adventure", "Adventure"),
-    ("Relaxation", "Relaxation"),
-    ("Nature", "Nature"),
     ("Architecture", "Architecture"),
     ("Historical", "Historical"),
-    ("Religious", "Religious")
+    ("Religious", "Religious"),
+    ("Educational", "Educational"),
+    ("Trekking", "Trekking"),
+    ("Sightseeing", "Sightseeing"),
+    ("Cultural", "Cultural"),
+    ("Wildlife", "Wildlife"),
+    ("One-Day-Trip", "One-Day-Trip")
 )
 
 

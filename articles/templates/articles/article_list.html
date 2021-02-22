@@ -98,19 +98,24 @@
         {% comment %} RECOMMENDED ARTICLES {% endcomment %}
         {% if user.is_authenticated %}
           {% for rec in recommend %}
-          <div class="col-lg-4 col-md-4 col-12" >
-            <div class="card mb-3" style="width:400px; height: 550px;border-radius: 50px;">
+          <div class="col-lg-4 col-md-4 col-12" style="margin:auto;" >
+            <div class="card " style="width:400px; height: 550px;border-radius: 50px;">
                 <img class="card-img-top" src="{{ rec.thumb.url }}" alt="Card image" style="height:200px; border-radius:50px;border-bottom-left-radius:00px;box-shadow: 2px 3px 5px rgb(49, 49, 49);  ">
                 <div class="card-body">
-                  <h4 class="card-title">{{ rec.title }}</h4>
+                  <a style="color:black ;text-decoration: none; " href="{% url 'articles:detail' slug=rec.slug %}" class="card-title"><h4>{{ rec.title }}</h4></a>
                   <div  style="background-image: linear-gradient(to right,rgb(0, 0, 0), rgb(0, 0, 0,0)); height: 2px; margin: 10px;margin-left: -3px;">
                     <hr style="opacity: 0;">
                   </div>
-              </div>
+                  <p class="card-text" style="overflow: auto;">{{ rec.snippet }}</p>
+                      <div>
+                        <a href="{% url 'articles:detail' slug=rec.slug %}" class="btn btn-dark">More</a>
+                      </div>
+                </div>
             </div>
+          </div>
           {% endfor %}
         {% else %}
-          <h5 style="margin: auto ;"> **Please Sign In to see personalised recommendations**</h4>
+          <h5 style="margin: auto ; color:silver;"> **Please Sign In to see personalised recommendations**</h4>
         {% endif %}
 
         <!-- <div class="col-lg-4 col-md-4 col-12">

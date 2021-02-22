@@ -7,13 +7,16 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 user_preference_choices = [
     "Adventure",
-    "Relaxation" ,
-    "Nature",
     "Architecture",
     "Historical",
-    "Religious"
+    "Religious",
+    "Educational",
+    "Trekking",
+    "Sightseeing",
+    "Cultural",
+    "Wildlife",
+    "One-Day-Trip"
 ]
-
 
 # Create your views here.
 def article_list(request):	# *args, **kwargs
