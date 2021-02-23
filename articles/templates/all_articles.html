@@ -1,0 +1,56 @@
+{% extends 'bs_base_layout.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    {% for article in articles %}
+  
+        <div class="row mb-5" style="margin-top: 47px;">
+        <div class="col-lg-g col-md-6 ">
+            <a href="{% url 'articles:detail' slug=article.slug %}"><img src="{{ article.thumb.url }}" style="object-fit: cover; height:300px; width:600px ;box-shadow: 2px 2px 3px rgb(75, 74, 74); border-radius : 5px ;" class="img-fluid"></a>
+        </div>
+        <div class="col-lg-g col-md-6 ">
+            <h1 class="text-light"><a class="text-light" href="{% url 'articles:detail' slug=article.slug %}" style="text-decoration : none;">{{ article.title }}</a></h1>
+            <p style="color: silver;">
+            {{ article.snippet }}
+            </p>
+            <button  class="btn bg-dark text-white"><a  class="text-light" href="{% url 'articles:detail' slug=article.slug %}">Read More</a></button>
+        
+        </div>
+        <div  style="background-image: linear-gradient(to right, rgb(0, 0, 0,0),silver, rgb(0, 0, 0,0)); height: 1px;margin-top: 10px;margin-bottom: 38px;">
+        <hr style="opacity: 0;">
+        </div>
+        </div>
+  
+    {% endfor %}
+
+    {% if articles.has_other_pages %}
+
+        <ul class="pagination">
+
+            {% if articles.has_previous %}
+                <li><a href="?page={{ articles.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+
+            {% for i in articles.paginator.page_range %}
+                {% if articles.number == i %}
+                    <li class="active"><span> {{ i }} <span class="sr-only">{current}</span></span></li>
+                {% else %}
+                    <li><a href = "?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if articles.has_next %}
+                <li><a href="?page={{ articles.next_page_number }}">&raquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+        
+        </ul>
+
+    {% endif %}
+
+{% endblock %}
