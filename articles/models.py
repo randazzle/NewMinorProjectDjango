@@ -20,7 +20,7 @@ class Article(models.Model):
     slug = models.SlugField()
     body = models.TextField()
     body1 = models.TextField()
-    body2 = models.TextField()
+    body2 = models.TextField(blank = True)
     date = models.DateTimeField(auto_now_add = True)
     thumb = models.ImageField(default = 'default.jpg', blank = True)
     img1 = models.ImageField(default = 'default.jpg', blank = True)
