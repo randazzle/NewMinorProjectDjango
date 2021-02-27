@@ -23,9 +23,9 @@
             <p style="color: silver;">
             {{ article.snippet }}
             </p>
-            <button  class="btn bg-dark text-white"><a  class="text-light" href="{% url 'articles:detail' slug=article.slug %}">Read More</a></button>
+            <a  style="color:silver; border:2px double silver; padding: 10px; border-radius: 10px;text-decoration: none;" onmouseover="this.style.color='black'; style.background ='silver' " onmouseout="style.background ='black'; this.style.border= '2px double silver';this.style.color='silver' " href="{% url 'articles:detail' slug=article.slug %}">Read More</a>
         
-        
+           
         </div>
         <div  style="background-image: linear-gradient(to right, rgb(0, 0, 0,0),silver, rgb(0, 0, 0,0)); height: 1px;margin-top: 10px;margin-bottom: 38px;">
         <hr style="opacity: 0;">

@@ -4,7 +4,7 @@
 <html>
 <head>
 	<title>Tourism Aid</title>
-    <link rel="stylesheet" href="{% static 'Navbar.css' %}">
+    
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
@@ -38,14 +38,14 @@
                 <span class="navbar-toggler-icon btn-dark"></span>
             </button>
 
-            <div style="z-index: 0; background-color: black; margin-top: -15px;padding: 10px;padding-bottom: -10px; border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;" class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div style="z-index: 0; background-color: black; margin-top: -15px;padding: 10px;padding-bottom: -30px; border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;" class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul style="padding-top: 10px;" class="navbar-nav ml-auto">
 
                     <center>
-                <form class="form-inline mx-auto my-2 my-lg-0" style="margin-top: 25px; background-color: white; border-radius: 50px; padding-left: 20px;padding-right: 12px;" method="get" action="{% url 'search' %}">
+                <form class="form-inline mx-auto my-2 my-lg-0" style="margin-top:10px;vertical-align: auto;padding-top: 5px;padding-right: 5px; background-color: white; border-radius: 50px; padding-left: 20px;padding-right: 12px;" method="get" action="{% url 'search' %}">
 
                         <input  name = "search" class="form-control mr-sm-2" type="search" placeholder="Where next...?" aria-label="Search" style="border: none;" >
-                        <button class="btn btn-outline-secondary  my-2 my-sm-0" type="submit" style="border: none; background-color: white; color: gray; "> <i class="fa fa-search"></i></button>
+                        <button class="btn btn-outline-secondary  my-2 my-sm-0" type="submit" style="border: none; background-color: white; color: gray; margin-right: 10px; "> <i class="fa fa-search"></i></button>
                 </form>
                 </center>
 

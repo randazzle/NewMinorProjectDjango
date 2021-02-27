@@ -5,35 +5,44 @@
 {% block content %}
 
     {% if query %}
-        <h1>Articles containing "{{ query }}"</h1>
-        <h3>
-            {% with articles.count as total_results %}
-            Found {{ total_results }} result{{ total_results|pluralize }}
-            {% endwith %}
-        </h3>
-
-        {% for c in articles %}
-            <div style="margin: auto;">
-            <div class="col-lg-4 col-md-4 col-12" style="padding-top: 10px;padding-bottom: 10px;" >
-                <div class="card " style="width:400px; height: 550px;border-radius: 50px;">
-                    <img class="card-img-top" src="{{ c.thumb.url }}" alt="Card image" style="height:200px; border-radius:50px;border-bottom-left-radius:00px;box-shadow: 2px 3px 5px rgb(49, 49, 49);  ">
-                    <div class="card-body">
-                        <a style="color:black ;text-decoration: none; " href="{% url 'articles:detail' slug=c.slug %}" class="card-title"><h4>{{ c.title }}</h4></a>
-                        <div  style="background-image: linear-gradient(to right,rgb(0, 0, 0), rgb(0, 0, 0,0)); height: 2px; margin: 10px;margin-left: -3px;">
-                        <hr style="opacity: 0;">
-                        </div>
-                        <p class="card-text" >{{ c.snippet }}</p>
-                            <div>
-                            <a style="position: absolute; bottom: 20px;" href="{% url 'articles:detail' slug=c.slug %}" class="btn btn-dark">More</a>
-                            </div>
-                    </div>
-                </div>
-                </div>
-            </div>
+      
+    <h1>Articles containing "{{ query }}"</h1>
+    <div  style=" background-image: linear-gradient(to right,silver, rgb(0, 0, 0,0) 50%); height: 2px; ;margin-left: 10px;">
+        <hr style="opacity: 0;">
+    </div>  
+    <h3 style="margin: 20px;color: silver;">
+        {% with articles.count as total_results %}
+        Found {{ total_results }} result{{ total_results|pluralize }}
+        {% endwith %}
+    </h3>
+    <div  style=" background-image: linear-gradient(to right,silver, rgb(0, 0, 0,0) 50%); height: 2px; ;margin-left: 10px;">
+            <hr style="opacity: 0;">
+    </div>
+    {% for c in articles %}
+    <div class="row mb-5" style="margin: 20px; " >
+        <div class="col-lg-g col-md-6 ">
+            <a href="{% url 'articles:detail' slug=c.slug %}"><img src="{{ c.thumb.url }}" style="object-fit: cover; height:300px; width:600px ;box-shadow: 2px 2px 3px rgb(75, 74, 74); border-radius : 5px ;" class="img-fluid"></a>
+        </div>
+        <div class="col-lg-g col-md-6 ">
+            <h1 class="text-light"><a class="text-light" href="{% url 'articles:detail' slug=c.slug %}" style="text-decoration : none;">{{ c.title }}</a></h1>
+            <p style="color: silver;">
+            {{ c.snippet }}
+            </p>
+           <a  style="color:silver; border:2px double silver; padding: 10px; border-radius: 10px;text-decoration: none;" onmouseover="this.style.color='black'; style.background ='silver' " onmouseout="style.background ='black'; this.style.border= '2px double silver';this.style.color='silver' " href="{% url 'articles:detail' slug=c.slug %}">Read More</a>
+        
+        
+        </div>
+        <div  style="background-image: linear-gradient(to right, rgb(0, 0, 0,0),silver, rgb(0, 0, 0,0)); height: 1px;margin-top: 10px;margin-bottom: 38px;">
+        <hr style="opacity: 0;">
+        </div>
+        </div>
+        <div  style="opacity: .15; background-image: linear-gradient(to right, rgb(0, 0, 0,0),silver, rgb(0, 0, 0,0)); height: 1px;margin-top: 10px;margin-bottom: 38px;">
+            <hr style="opacity: 0;">
+        </div>
         {% empty %}
             <h4> There are no results for your query </h4>
         {% endfor %}
-        
+       
         {% if articles.has_other_pages %}
 
             <ul class="pagination" style=" text-decoration: none;" >
