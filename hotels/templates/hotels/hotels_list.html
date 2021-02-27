@@ -1,0 +1,74 @@
+{% extends 'bs_base_layout.html' %}
+
+{% load static %}
+
+{% block content %}
+<style>
+  body{
+    overflow-x: hidden;
+    margin: ;
+  }
+</style>
+
+<!-- Cards -->
+
+  <section class="mb-4 ml-3 mr-3" style="display: inline; justify-content: center;">
+    <div class="container-fluid">
+      <div  style="background-image: linear-gradient(to right, rgb(0, 0, 0,0),silver, rgb(0, 0, 0,0)); height: 2px;margin: 10px;margin-bottom: 25px; ">
+        <hr style="opacity: 0;">
+      </div>
+      <h1 class="text-center text-light text-capitalizeb pt-5"style="margin-top:-60px;" >Hotels</h1>
+      <div  style="background-image: linear-gradient(to right, rgb(0, 0, 0,0),silver, rgb(0, 0, 0,0)); height: 2px;margin-top: 10px;margin-bottom: 38px;">
+        <hr style="opacity: 0;">
+      </div>
+      <div class="row   " style="margin: 0 auto;">
+
+        <!-- {% for cardd in cards %}
+        <div class="col-lg-4 col-md-4 col-12">
+          <div class="card mb-3" style="width:400px; height: 550px;border-radius: 50px;">
+              <img class="card-img-top" src="{{ cardd.thumb.url }}" alt="Card image" style="height:200px; border-radius:50px;border-bottom-left-radius:00px;box-shadow: 2px 3px 5px rgb(49, 49, 49);  ">
+              <div class="card-body">
+                <h4 class="card-title">{{ cardd.title }}</h4>
+                <div  style="background-image: linear-gradient(to right,rgb(0, 0, 0), rgb(0, 0, 0,0)); height: 2px; margin: 10px;margin-left: -3px;">
+                  <hr style="opacity: 0;">
+                </div>
+                <p class="card-text">{{ cardd.snippet }}</p>
+                <div class="align-self-start">
+                  <a href="{% url 'hotels:detail' slug=cardd.slug %}" class="btn btn-dark stretched-link">More</a>
+                </div>
+              </div>
+          </div>
+        </div>
+        {% endfor %} -->
+
+          {% for hotel in hotels %}
+  
+          <div class="row mb-5">
+            <div class="col-lg-g col-md-6 ">
+              <a href="{% url 'hotels:hotel_detail' slug=hotel.slug %}"><img src="{{ hotel.thumb.url }}" style="object-fit: cover; height:300px; width:600px ;box-shadow: 2px 2px 3px rgb(75, 74, 74); border-radius : 5px ;" class="img-fluid"></a>
+            </div>
+            <div class="col-lg-g col-md-6 ">
+              <h1 class="text-light"><a class="text-light" href="{% url 'hotels:hotel_detail' slug=hotel.slug %}" style="text-decoration : none;">{{ hotel.title }}</a></h1>
+              <p style="color: silver;">
+                {{ hotel.snippet }}
+              </p>
+              <button  class="btn bg-dark text-white"><a  class="text-light" href="{% url 'hotels:hotel_detail' slug=hotel.slug %}">Read More</a></button>
+            
+            </div>
+            <div  style="background-image: linear-gradient(to right, rgb(0, 0, 0,0),silver, rgb(0, 0, 0,0)); height: 1px;margin-top: 10px;margin-bottom: 38px;">
+            <hr style="opacity: 0;">
+          </div>
+          
+          </div>
+          <div  style="opacity: .15; background-image: linear-gradient(to right, rgb(0, 0, 0,0),silver, rgb(0, 0, 0,0)); height: 1px;margin-top: 10px;margin-bottom: 38px;">
+            <hr style="opacity: 0;">
+        </div>
+  
+        {% endfor %}
+        
+      </div>
+    </div>
+
+  </section>
+
+{% endblock %}

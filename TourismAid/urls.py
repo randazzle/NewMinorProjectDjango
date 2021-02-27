@@ -5,7 +5,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from django.conf import settings
 from articles import views as article_views
-
+from hotels import views as hotel_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -16,6 +16,9 @@ urlpatterns = [
     path('home', article_views.article_list, name = "articles"),
     path('', views.home, name = "home"),
     path('all-articles/', article_views.all_articles, name = "all_articles"),
+    path('search/', article_views.search, name = "search"),
+    path('hotels/', include('hotels.urls'), name = "hotels"),
+    # path('hotels/', hotel_views.hotel_list, name = "hotels"),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

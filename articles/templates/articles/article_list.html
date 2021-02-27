@@ -190,6 +190,24 @@
   
     </div>
   </section>
-  
+
+  <div id='map' style='width: 1000px; height:800px;'></div>
+  <script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoicmFuZGF6emxlIiwiYSI6ImNrbG5uM2t2aDAwY2IybnA2bGN1YWF0N3QifQ.r1nyniJdTbVwWclWGc3tWw';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [85.30802979343552, 27.69433994955253],
+    zoom: 20
+  });
+
+  var popup = new mapboxgl.Popup()
+  .setHTML('<h3>Reykjavik Roasters</h3><p>A good coffee shop</p>');
+
+  var marker = new mapboxgl.Marker()
+  .setLngLat([85.30802979343552, 27.69433994955253])
+  .setPopup(popup)
+  .addTo(map);
+  </script>
 
 {% endblock %}

@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from .models import Article
 from accounts.models import Profile
+from hotels.models import Hotel
 from django.http import HttpResponse
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
 
 user_preference_choices = [
     "Adventure",
@@ -24,6 +26,7 @@ def article_list(request):	# *args, **kwargs
     articles = Article.objects.all().order_by('-date')[0:3]
     cards = Article.objects.all().order_by('-date')[3:6]
     current_user = request.user
+    mapbox_access_token = 'pk.eyJ1IjoicmFuZGF6emxlIiwiYSI6ImNrbG5uM2t2aDAwY2IybnA2bGN1YWF0N3QifQ.r1nyniJdTbVwWclWGc3tWw'
     if(current_user.is_authenticated):
         all_articles = Article.objects.all()
         # current_user = request.user.get_profile()
@@ -84,28 +87,28 @@ def article_list(request):	# *args, **kwargs
         cosine_sim_list = [None] * len(all_articles)
         for art in count_matrix:
             cosine_sim = cosine_similarity(user_count_matrix[1], count_matrix[i])
-            print("Cosine Similarity: ",i, " : ", cosine_sim)
+            # print("Cosine Similarity: ",i, " : ", cosine_sim)
             cosine_sim_list[i] = cosine_sim
             i = i + 1
         
         similar_destinations = list(enumerate(cosine_sim_list))
-        print("Similar destinations:",similar_destinations)
+        # print("Similar destinations:",similar_destinations)
 
         sorted_similar_destinations= sorted(similar_destinations, key = lambda x : x[1],reverse=True)
-        print("Sorted Sim Des:", sorted_similar_destinations)
+        # print("Sorted Sim Des:", sorted_similar_destinations)
 
         # print("Cosine Similarity List:  ",cosine_sim_list)
         Recommended_articles = [None] * 3
         p=0
         for each in sorted_similar_destinations:
-            print("Article: ", get_article_from_index(each[0]))
+            # print("Article: ", get_article_from_index(each[0]))
             Recommended_articles[p] = get_article_from_index(each[0])
             p = p + 1
             if(p>2):
                 break
 
         print("Recommended articles:",Recommended_articles)
-        return render(request, 'articles/article_list.html', context={'articles':articles, 'cards':cards, 'recommend':Recommended_articles})
+        return render(request, 'articles/article_list.html', context={'articles':articles, 'cards':cards, 'recommend':Recommended_articles, 'mapbox_access_token': mapbox_access_token})
 
         # cosine_sim = cosine_similarity(count_matrix[3],count_matrix[1])
         # print("Cosine Similarity: ",cosine_sim)
@@ -123,7 +126,7 @@ def article_list(request):	# *args, **kwargs
         #     cosine_sim = cosine_similarity(article_tags, user_preferences)
 
     else:
-        return render(request, 'articles/article_list.html', context={'articles':articles, 'cards':cards})
+        return render(request, 'articles/article_list.html', context={'articles':articles, 'cards':cards, 'mapbox_access_token': mapbox_access_token})
 
 def article_detail(request, slug):
     #return HttpResponse(slug)
@@ -143,3 +146,26 @@ def all_articles(request):	# *args, **kwargs
         articles = paginator.page(paginator.num_pages)
 
     return render(request, 'articles/all_articles.html', context={'articles':articles})
+
+def search(request):
+    results = []
+    page = request.GET.get('page', 1)
+    
+
+    if request.method == "GET":
+        query = request.GET.get('search')
+        if not query :
+            query = ""
+        results = Article.objects.filter(Q(title__icontains=query) | Q(tags__icontains=query))
+
+    paginator = Paginator(results, 5)
+    try:
+        articles = paginator.page(page)
+    except PageNotAnInteger:
+        articles = paginator.page(1)
+    except EmptyPage:
+        articles = paginator.page(paginator.num_pages)
+    
+    
+
+    return render(request, 'articles/search.html', context = {'query':query, 'articles':articles})

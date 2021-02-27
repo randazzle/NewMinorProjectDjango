@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     #own
     'articles.apps.ArticlesConfig',
     'accounts.apps.AccountsConfig',
+    'hotels.apps.HotelsConfig',
 ]
 
 MIDDLEWARE = [
