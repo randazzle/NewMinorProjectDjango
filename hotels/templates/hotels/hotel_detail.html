@@ -20,15 +20,14 @@
           
 </div>
 
-   	<p class="" style="color: silver; margin: 20px;">
+<p class="" style="color: silver; margin: 20px;">
 		 {{hotel.body}}
-  	</p> 
+</p> 
 
-    <p class="" style="color: silver; margin: 20px;">
-		 <a href="{{hotel.url}}">Read More</a>
-  	</p> 
+<p style="text-align: center;margin-bottom: 30px;">   
+		 <a  style="color:silver; border: 2px double silver; padding: 10px; border-radius: 10px;text-decoration: none;margin: auto;" onmouseover="this.style.color='black'; style.background ='silver' " onmouseout="style.background ='black'; this.style.border= '2px double silver';this.style.color='silver' " href="{{hotel.url}}">Visit Website</a>
+</p>    
 
-</div>
 {% comment %} MAP {% endcomment %}
 <div id='map' style='width: 1000px; height:500px; margin: auto;'></div>
   <script>
