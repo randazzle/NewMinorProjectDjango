@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'django.contrib.gis.geoip2',
     'multiselectfield',
     #own
     'articles.apps.ArticlesConfig',
@@ -133,3 +134,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_PROFILE_MODULE = 'accounts.Profile'
+
+# GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
+
+# GDAL_LIBRARY_PATH = r'C:\OSGeo4W64\bin\gdal301'

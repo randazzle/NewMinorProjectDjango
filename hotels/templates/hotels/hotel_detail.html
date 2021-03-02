@@ -33,20 +33,60 @@
 <div id='map' style='width: 1000px; height:500px; margin: auto;'></div>
   <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoicmFuZGF6emxlIiwiYSI6ImNrbG5uM2t2aDAwY2IybnA2bGN1YWF0N3QifQ.r1nyniJdTbVwWclWGc3tWw';
-  var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: [{{ hotel.longitude }}, {{ hotel.latitude }}],
-    zoom: 18
-  });
 
-  var popup = new mapboxgl.Popup()
-  .setHTML('<h3>{{ hotel.title }}</h3>');
+  if ("geolocation" in navigator) { 
+    navigator.geolocation.getCurrentPosition(position => { 
+      var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [position.coords.longitude, position.coords.latitude],
+        zoom: 16
+      });
 
-  var marker = new mapboxgl.Marker()
-  .setLngLat([{{ hotel.longitude }}, {{ hotel.latitude }}])
-  .setPopup(popup)
-  .addTo(map);
+      var popup = new mapboxgl.Popup()
+      .setHTML('<h3>{{ hotel.title }}</h3>');
+
+      var marker = new mapboxgl.Marker()
+      .setLngLat([{{ hotel.longitude }}, {{ hotel.latitude }}])
+      .setPopup(popup)
+      .addTo(map);
+
+      // Add geolocate control to the map.
+        map.addControl(
+        new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: true
+            },
+            trackUserLocation: true
+            })
+        );
+    });
+  } else {
+      var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [{{ hotel.longitude }}, {{ hotel.latitude }}],
+        zoom: 16
+      });
+
+      var popup = new mapboxgl.Popup()
+      .setHTML('<h3>{{ hotel.title }}</h3>');
+
+      var marker = new mapboxgl.Marker()
+      .setLngLat([{{ hotel.longitude }}, {{ hotel.latitude }}])
+      .setPopup(popup)
+      .addTo(map);
+
+      // Add geolocate control to the map.
+        map.addControl(
+        new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: true
+            },
+            trackUserLocation: true
+            })
+        );
+  }
   </script>
 
 {% endblock %}
