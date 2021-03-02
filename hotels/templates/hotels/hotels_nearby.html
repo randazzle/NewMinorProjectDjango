@@ -1,0 +1,81 @@
+{% extends 'bs_base_layout.html' %}
+
+{% load static %}
+
+{% block content %}
+    <style>
+    body{
+        overflow-x: hidden;
+        margin: ;
+    }
+    </style>
+    <div style="margin-top: 65px; text-align: center;">
+    <div  style="width: 35%; background-image: linear-gradient(to right,rgb(0, 0, 0,0) ,silver, rgb(0, 0, 0,0) ); height: 2px;; margin:auto;">
+    <hr style="opacity: 0;">
+    </div>
+    <h2 style="margin:20px;color: silver;">Hotels Nearby</h2>
+    <div  style=" background-image: linear-gradient(to right,rgb(0, 0, 0,0) ,silver, rgb(0, 0, 0,0) ); height: 2px; margin:auto;width: 35%;">
+    <hr style="opacity: 0;">
+    </div>
+    </div>
+    <script>
+      navigator.geolocation.getCurrentPosition(position => { 
+        var lon = position.coords.longitude
+        var lat = position.coords.latitude
+
+        function getCookie(name) {
+          var cookieValue = null;
+          if (document.cookie && document.cookie !== '') {
+              var cookies = document.cookie.split(';');
+              for (var i = 0; i < cookies.length; i++) {
+                  var cookie = jQuery.trim(cookies[i]);
+                  // Does this cookie string begin with the name we want?
+                  if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                      cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                      break;
+                  }
+              }
+          }
+          return cookieValue;
+        }
+
+        var URL = "{% url 'hotels:hotels_nearby' %}"
+        var csrftoken = getCookie('csrftoken');
+        $.ajax({
+            type: "POST",
+            url: URL,
+            data:{lat: lat,
+                  lon: lon,
+                  csrfmiddlewaretoken: csrftoken
+            },
+        });
+      });
+    </script>
+
+    
+    {% for hotel in hotels %}
+  
+          <div class="row mb-5">
+            <div class="col-lg-g col-md-6 ">
+              <a href="{% url 'hotels:hotel_detail' slug=hotel.slug %}"><img src="{{ hotel.thumb.url }}" style="object-fit: cover; height:300px; width:600px ;box-shadow: 2px 2px 3px rgb(75, 74, 74); border-radius : 5px ;" class="img-fluid"></a>
+            </div>
+            <div class="col-lg-g col-md-6 ">
+              <h1 class="text-light"><a class="text-light" href="{% url 'hotels:hotel_detail' slug=hotel.slug %}" style="text-decoration : none;">{{ hotel.title }}</a></h1>
+              <p style="color: silver;">
+                {{ hotel.snippet }}
+              </p>
+              <a  style="color:silver; border:2px double silver; padding: 10px; border-radius: 10px;text-decoration: none;" onmouseover="this.style.color='black'; style.background ='silver' " onmouseout="style.background ='black'; this.style.border= '2px double silver';this.style.color='silver' " href="{% url 'hotels:hotel_detail' slug=hotel.slug %}">Read More</a>
+              
+            
+            </div>
+            <div  style="background-image: linear-gradient(to right, rgb(0, 0, 0,0),silver, rgb(0, 0, 0,0)); height: 1px;margin-top: 10px;margin-bottom: 38px;">
+            <hr style="opacity: 0;">
+          </div>
+          
+          </div>
+          <div  style="opacity: .15; background-image: linear-gradient(to right, rgb(0, 0, 0,0),silver, rgb(0, 0, 0,0)); height: 1px;margin-top: 10px;margin-bottom: 38px;">
+            <hr style="opacity: 0;">
+        </div>
+  
+        {% endfor %}
+{% endblock %}

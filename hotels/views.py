@@ -16,6 +16,39 @@ def hotel_list(request):
     hotels = Hotel.objects.all()
     return render(request, 'hotels/hotels_list.html', context={'hotels':hotels, 'mapbox_access_token': mapbox_access_token})
 
+def hotels_nearby(request):
+    hotels = Hotel.objects.all()[0:6]
+    user_lat = request.POST.get('lat', 27.699406964053935)
+    user_lon = request.POST.get('lon', 85.2971295682943)
+    # print("LOngitude = ", user_lon, "LAtitude = ", user_lat)
+
+    def get_hotel_from_index(index):
+            return hotels[index]
+
+    hotel_distances = [None] * len(hotels)
+    i=0
+    for hotel in hotels:
+        hotel_distances[i] = round(geodesic((user_lat, user_lon),(hotel.latitude, hotel.longitude)).km, 5)
+        i=i+1
+        # print(i,"=",hotel_distances[i])
+
+    nearest_hotels = list(enumerate(hotel_distances))
+    # print("Nearest Hotels List = ",nearest_hotels)
+
+    sorted_nearest_hotels= sorted(nearest_hotels, key = lambda x : x[1])
+    print("Sorted Nearest Hotels = ", sorted_nearest_hotels)
+
+    nearby_hotels = [None] * 5
+    p = 0
+    for each in sorted_nearest_hotels:
+        print("Hotel: ", get_hotel_from_index(each[0]))
+        nearby_hotels[p] = get_hotel_from_index(each[0])
+        p = p + 1
+        if(p>4):
+            break
+
+    return render(request, 'hotels/hotels_nearby.html', context={'hotels':nearby_hotels, 'mapbox_access_token': mapbox_access_token})
+
 def hotel_detail(request, slug):
     hotel = Hotel.objects.get(slug=slug)
     lat = request.POST.get('lat', 27.699406964053935)
@@ -43,6 +76,3 @@ def hotel_detail(request, slug):
     lat_center, lon_center = calculate_center(lat, lon, hotel.latitude, hotel.longitude)
     return render(request, 'hotels/hotel_detail.html', context={'hotel':hotel, 'mapbox_access_token': mapbox_access_token, 'lat_center': lat_center, 'lon_center': lon_center})
 
-def hotels_nearby(request):
-    hotels = Hotel.objects.all()
-    return render(request, 'hotels/hotels_nearby_get.html', context={'hotels':hotels, 'mapbox_access_token': mapbox_access_token})

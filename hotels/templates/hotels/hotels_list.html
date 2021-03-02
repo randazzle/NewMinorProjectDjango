@@ -42,7 +42,7 @@
           </div>
         </div>
         {% endfor %} -->
-        <script>
+        {% comment %} <script>
         navigator.geolocation.getCurrentPosition(position => { 
             var lon = position.coords.longitude
             var lat = position.coords.latitude
@@ -52,19 +52,22 @@
 
             {% csrf_token %}
             <!-- <input type="submit" value="Signup"> -->
-            <input type="hidden" name="longitude" value="{{lon}}" />
-            <input type="hidden" name="latitude" value="{{lat}}" />
+            <input type="hidden" name="longitude" id="longitude" value="{{lon}}" />
+            <input type="hidden" name="latitude" id="latitude" value="{{lat}}" />
             <center><button type="submit" class="btn btn-dark" style="background-color: black; color:silver;">Get Nearby Hotels</button></center>
-        </form>
+        </form> {% endcomment %}
 
-          {% for hotel in hotels %}
+
+        <a href="{% url 'hotels:hotels_nearby' %}">Hotels Nearby</a>
+
+        {% for hotel in hotels %}
   
           <div class="row mb-5">
             <div class="col-lg-g col-md-6 ">
               <a href="{% url 'hotels:hotel_detail' slug=hotel.slug %}"><img src="{{ hotel.thumb.url }}" style="object-fit: cover; height:300px; width:600px ;box-shadow: 2px 2px 3px rgb(75, 74, 74); border-radius : 5px ;" class="img-fluid"></a>
             </div>
             <div class="col-lg-g col-md-6 ">
-              <h1 class="text-light"><a class="text-light" href="{% url 'hotels:hotel_detail' slug=hotel.slug %}" style="text-decoration : none;">{{ hotel.title }}</a></h1>
+              <h1 class="text-light"><a class="text-light" href="{% url 'hotels:hotel_detail' hotel.slug %}" style="text-decoration : none;">{{ hotel.title }}</a></h1>
               <p style="color: silver;">
                 {{ hotel.snippet }}
               </p>
@@ -79,7 +82,7 @@
           </div>
           <div  style="opacity: .15; background-image: linear-gradient(to right, rgb(0, 0, 0,0),silver, rgb(0, 0, 0,0)); height: 1px;margin-top: 10px;margin-bottom: 38px;">
             <hr style="opacity: 0;">
-        </div>
+          </div>
   
         {% endfor %}
         
