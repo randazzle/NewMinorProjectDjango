@@ -42,6 +42,20 @@
           </div>
         </div>
         {% endfor %} -->
+        <script>
+        navigator.geolocation.getCurrentPosition(position => { 
+            var lon = position.coords.longitude
+            var lat = position.coords.latitude
+        });
+        </script>
+        <form  action="/hotels/hotels_nearby/" method="post">
+
+            {% csrf_token %}
+            <!-- <input type="submit" value="Signup"> -->
+            <input type="hidden" name="longitude" value="{{lon}}" />
+            <input type="hidden" name="latitude" value="{{lat}}" />
+            <center><button type="submit" class="btn btn-dark" style="background-color: black; color:silver;">Get Nearby Hotels</button></center>
+        </form>
 
           {% for hotel in hotels %}
   

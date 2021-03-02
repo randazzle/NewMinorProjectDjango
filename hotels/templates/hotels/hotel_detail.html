@@ -35,19 +35,32 @@
 
   if ("geolocation" in navigator) { 
     navigator.geolocation.getCurrentPosition(position => { 
+      var lon = position.coords.longitude
+      var lat = position.coords.latitude
+
+      
+
       var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
-        center: [position.coords.longitude, position.coords.latitude],
-        zoom: 16
+        center: [{{ lon_center }}, {{ lat_center }}],
+        zoom: 13.5
       });
 
-      var popup = new mapboxgl.Popup()
+      var popup1 = new mapboxgl.Popup()
       .setHTML('<h3>{{ hotel.title }}</h3>');
 
-      var marker = new mapboxgl.Marker()
+      var marker1 = new mapboxgl.Marker()
       .setLngLat([{{ hotel.longitude }}, {{ hotel.latitude }}])
-      .setPopup(popup)
+      .setPopup(popup1)
+      .addTo(map);
+      
+       var popup2 = new mapboxgl.Popup()
+      .setHTML('<h3>You</h3>');
+
+      var marker2 = new mapboxgl.Marker({ "color": "#FF0000" })
+      .setLngLat([position.coords.longitude, position.coords.latitude])
+      .setPopup(popup2)
       .addTo(map);
 
       // Add geolocate control to the map.
@@ -59,12 +72,39 @@
             trackUserLocation: true
             })
         );
+        
+        function getCookie(name) {
+          var cookieValue = null;
+          if (document.cookie && document.cookie !== '') {
+              var cookies = document.cookie.split(';');
+              for (var i = 0; i < cookies.length; i++) {
+                  var cookie = jQuery.trim(cookies[i]);
+                  // Does this cookie string begin with the name we want?
+                  if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                      cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                      break;
+                  }
+              }
+          }
+          return cookieValue;
+        }
+
+        var URL = "{% url 'hotels:hotel_detail' slug=hotel.slug %}"
+        var csrftoken = getCookie('csrftoken');
+        $.ajax({
+            type: "POST",
+            url: URL,
+            data:{lat: lat,
+                  lon: lon,
+                  csrfmiddlewaretoken: csrftoken
+            },
+        });
     });
   } else {
       var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
-        center: [{{ hotel.longitude }}, {{ hotel.latitude }}],
+        center: [{{ lat_center }}, {{ lon_center }}],
         zoom: 16
       });
 
