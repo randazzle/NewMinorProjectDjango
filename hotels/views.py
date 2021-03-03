@@ -11,9 +11,19 @@ def calculate_center(lat1,lon1,lat2,lon2):
     lon_center = (lon1 + lon2)/2
     return lat_center, lon_center
 
+def calculate_zoom(distance):
+    if (distance<1):
+        return 14
+    elif (distance>=1 and distance<4):
+        return 13.5
+    elif (distance>=4 and distance<10):
+        return 13
+    else:
+        return 12
+
 # Create your views here.
 def hotel_list(request):
-    hotels = Hotel.objects.all()
+    hotels = Hotel.objects.all().order_by('-date')
     return render(request, 'hotels/hotels_list.html', context={'hotels':hotels, 'mapbox_access_token': mapbox_access_token})
 
 def hotels_nearby(request):
@@ -36,12 +46,12 @@ def hotels_nearby(request):
     # print("Nearest Hotels List = ",nearest_hotels)
 
     sorted_nearest_hotels= sorted(nearest_hotels, key = lambda x : x[1])
-    print("Sorted Nearest Hotels = ", sorted_nearest_hotels)
+    # print("Sorted Nearest Hotels = ", sorted_nearest_hotels)
 
     nearby_hotels = [None] * 5
     p = 0
     for each in sorted_nearest_hotels:
-        print("Hotel: ", get_hotel_from_index(each[0]))
+        # print("Hotel: ", get_hotel_from_index(each[0]))
         nearby_hotels[p] = get_hotel_from_index(each[0])
         p = p + 1
         if(p>4):
@@ -74,5 +84,8 @@ def hotel_detail(request, slug):
     # lat,lng = g.lat_lon(user_ip)
 
     lat_center, lon_center = calculate_center(lat, lon, hotel.latitude, hotel.longitude)
-    return render(request, 'hotels/hotel_detail.html', context={'hotel':hotel, 'mapbox_access_token': mapbox_access_token, 'lat_center': lat_center, 'lon_center': lon_center})
+    distance = round(geodesic((lat, lon),(hotel.latitude, hotel.longitude)).km, 5)
+    zoomm = calculate_zoom(distance)
+    print("ZOOM = ",zoomm)
+    return render(request, 'hotels/hotel_detail.html', context={'hotel':hotel, 'mapbox_access_token': mapbox_access_token, 'lat_center': lat_center, 'lon_center': lon_center, 'zoomm':zoomm})
 

@@ -44,7 +44,7 @@
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [{{ lon_center }}, {{ lat_center }}],
-        zoom: 13.5
+        zoom: {{ zoomm }}
       });
 
       var popup1 = new mapboxgl.Popup()
