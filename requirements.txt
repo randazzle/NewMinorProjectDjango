@@ -16,7 +16,6 @@ django-multiselectfield==0.1.12
 django-rest-auth==0.9.5
 djangorestframework==3.12.2
 filelock==3.0.12
-GDAL @ file:///D:/3.%20Projects/Development/TourismAid/GDAL-3.2.1-cp38-cp38-win_amd64.whl
 geographiclib==1.50
 geoip2==4.1.0
 geopy==2.1.0
