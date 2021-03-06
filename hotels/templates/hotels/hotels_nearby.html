@@ -55,7 +55,7 @@
     
     {% for hotel in hotels %}
   
-          <div class="row mb-5">
+          <div class="row mb-5" style="margin-top: 20px;">
             <div class="col-lg-g col-md-6 ">
               <a href="{% url 'hotels:hotel_detail' slug=hotel.slug %}"><img src="{{ hotel.thumb.url }}" style="object-fit: cover; height:300px; width:600px ;box-shadow: 2px 2px 3px rgb(75, 74, 74); border-radius : 5px ;" class="img-fluid"></a>
             </div>

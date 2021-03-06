@@ -6,63 +6,32 @@
 <style>
   body{
     overflow-x: hidden;
-    margin: ;
-  }
+    margin: 10px;
+    
+    }
+    
+  
 </style>
-<div style="margin-top: 65px; text-align: center;">
-  <div  style="width: 35%; background-image: linear-gradient(to right,rgb(0, 0, 0,0) ,silver, rgb(0, 0, 0,0) ); height: 2px;; margin:auto;">
-  <hr style="opacity: 0;">
-</div>
-  <h2 style="margin:20px;color: silver;">Hotels</h2>
-  <div  style=" background-image: linear-gradient(to right,rgb(0, 0, 0,0) ,silver, rgb(0, 0, 0,0) ); height: 2px; margin:auto;width: 35%;">
-  <hr style="opacity: 0;">
-</div>
-</div>
 <!-- Cards -->
 
-  <section class="mb-4 ml-3 mr-3" style="display: inline; justify-content: center;">
-    <div class="container-fluid">
-      
-      <div class="row   " style="margin: 0 auto;">
-
-        <!-- {% for cardd in cards %}
-        <div class="col-lg-4 col-md-4 col-12">
-          <div class="card mb-3" style="width:400px; height: 550px;border-radius: 50px;">
-              <img class="card-img-top" src="{{ cardd.thumb.url }}" alt="Card image" style="height:200px; border-radius:50px;border-bottom-left-radius:00px;box-shadow: 2px 3px 5px rgb(49, 49, 49);  ">
-              <div class="card-body">
-                <h4 class="card-title">{{ cardd.title }}</h4>
-                <div  style="background-image: linear-gradient(to right,rgb(0, 0, 0), rgb(0, 0, 0,0)); height: 2px; margin: 10px;margin-left: -3px;">
-                  <hr style="opacity: 0;">
-                </div>
-                <p class="card-text">{{ cardd.snippet }}</p>
-                <div class="align-self-start">
-                  <a href="{% url 'hotels:detail' slug=cardd.slug %}" class="btn btn-dark stretched-link">More</a>
-                </div>
-              </div>
-          </div>
-        </div>
-        {% endfor %} -->
-        {% comment %} <script>
-        navigator.geolocation.getCurrentPosition(position => { 
-            var lon = position.coords.longitude
-            var lat = position.coords.latitude
-        });
-        </script>
-        <form  action="/hotels/hotels_nearby/" method="post">
-
-            {% csrf_token %}
-            <!-- <input type="submit" value="Signup"> -->
-            <input type="hidden" name="longitude" id="longitude" value="{{lon}}" />
-            <input type="hidden" name="latitude" id="latitude" value="{{lat}}" />
-            <center><button type="submit" class="btn btn-dark" style="background-color: black; color:silver;">Get Nearby Hotels</button></center>
-        </form> {% endcomment %}
-
-
-        <a href="{% url 'hotels:hotels_nearby' %}">Hotels Nearby</a>
-
-        {% for hotel in hotels %}
   
-          <div class="row mb-5">
+
+      <div style="margin-top: 90px; margin-bottom: -30px; text-align: center;"> 
+        <a  style="text-decoration: none; background-color: silver;color: black ; width: 100%; margin:auto ;padding-top: 15px;padding-bottom: 15px;padding-left: 30%;padding-right: 30%;border-radius: 25px;box-shadow: 2px 2px 5px rgb(97, 96, 96); " href="{% url 'hotels:hotels_nearby' %}" onmouseover="style.background='rgb(214, 210, 210)';"onmouseout="style.background='silver'"> <i style="color: rgb(109, 18, 18);" class="fa fa-map-marker"></i>  View Hotels Nearby </a>
+      </div>
+        <div style="margin-top: 65px; text-align: center;">
+          <div  style="width: 35%; background-image: linear-gradient(to right,rgb(0, 0, 0,0) ,silver, rgb(0, 0, 0,0) ); height: 2px;; margin:auto;">
+          <hr style="opacity: 0;">
+        </div>
+          <h2 style="margin:20px;color: silver;"> New Entries</h2>
+          <div  style=" background-image: linear-gradient(to right,rgb(0, 0, 0,0) ,silver, rgb(0, 0, 0,0) ); height: 2px; margin:auto;width: 35%;">
+          <hr style="opacity: 0;">
+        </div>
+        </div>
+        {% for hotel in hotels %}
+        
+          <div class="row mb-5" style="margin:15px ;">
+            
             <div class="col-lg-g col-md-6 ">
               <a href="{% url 'hotels:hotel_detail' slug=hotel.slug %}"><img src="{{ hotel.thumb.url }}" style="object-fit: cover; height:300px; width:600px ;box-shadow: 2px 2px 3px rgb(75, 74, 74); border-radius : 5px ;" class="img-fluid"></a>
             </div>
