@@ -28,6 +28,7 @@
           <hr style="opacity: 0;">
         </div>
         </div>
+
         {% for hotel in hotels %}
         
           <div class="row mb-5" style="margin:15px ;">
@@ -54,6 +55,35 @@
           </div>
   
         {% endfor %}
+
+        {% if hotels.has_other_pages %}
+
+          <ul class="pagination" style=" text-decoration: none;" >
+            <div style="margin: auto; display: inline-flex;justify-content: space-between;">
+            {% if hotels.has_previous %}
+                <li  style="color: silver;"><a style="color: silver;" href="?page={{ hotels.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+                <li class="disabled" style="color: silver;"><span>&laquo;</span></li>
+            {% endif %}
+
+            {% for i in hotels.paginator.page_range %}
+                {% if hotels.number == i %}
+                    <li class="active" style="padding-top: 3px; margin-left: 5px; margin-right: 5px; color: black; background-color: white;border-radius: 5px; width: 30px;height: 30px; text-align: center;"><span > {{ i }} <span  class="sr-only">{current}</span></span></li>
+                {% else %}
+                   <a style="color: white;"  href = "?page={{ i }}"> <li onmouseover="style.background='gray'" onmouseout="style.background='rgb(58, 57, 57)'" style="padding-top: 3px; margin-left: 5px; margin-right: 5px;  background-color: rgb(58, 57, 57);border-radius: 5px; width: 30px;height: 30px; text-align: center;" >{{ i }}</li></a>
+                {% endif %}
+            {% endfor %}
+
+            {% if hotels.has_next %}
+                <li  ><a style="color: silver;" href="?page={{ hotels.next_page_number }}">&raquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+            </div>
+          </ul>
+
+        {% endif %}
+
         
       </div>
     </div>

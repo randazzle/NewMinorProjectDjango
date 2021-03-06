@@ -149,8 +149,6 @@ def all_articles(request):	# *args, **kwargs
 
 def search(request):
     results = []
-    page = request.GET.get('page', 1)
-    
 
     if request.method == "GET":
         query = request.GET.get('search')
@@ -158,14 +156,4 @@ def search(request):
             query = ""
         results = Article.objects.filter(Q(title__icontains=query) | Q(tags__icontains=query))
 
-    paginator = Paginator(results, 5)
-    try:
-        articles = paginator.page(page)
-    except PageNotAnInteger:
-        articles = paginator.page(1)
-    except EmptyPage:
-        articles = paginator.page(paginator.num_pages)
-    
-    
-
-    return render(request, 'articles/search.html', context = {'query':query, 'articles':articles})
+    return render(request, 'articles/search.html', context = {'query':query, 'articles':results})

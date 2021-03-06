@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Hotel
 from geopy.distance import geodesic
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # from django.contrib.gis.geoip2 import GeoIP2
 
 mapbox_access_token = 'pk.eyJ1IjoicmFuZGF6emxlIiwiYSI6ImNrbG5uM2t2aDAwY2IybnA2bGN1YWF0N3QifQ.r1nyniJdTbVwWclWGc3tWw'
@@ -23,7 +24,17 @@ def calculate_zoom(distance):
 
 # Create your views here.
 def hotel_list(request):
-    hotels = Hotel.objects.all().order_by('-date')
+    hotels_list = Hotel.objects.all().order_by('-date')
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(hotels_list, 5)
+    try:
+        hotels = paginator.page(page)
+    except PageNotAnInteger:
+        hotels = paginator.page(1)
+    except EmptyPage:
+        hotels = paginator.page(paginator.num_pages)
+        
     return render(request, 'hotels/hotels_list.html', context={'hotels':hotels, 'mapbox_access_token': mapbox_access_token})
 
 def hotels_nearby(request):

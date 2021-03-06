@@ -43,33 +43,6 @@
             <h4> There are no results for your query </h4>
         {% endfor %}
        
-        {% if articles.has_other_pages %}
-
-            <ul class="pagination" style=" text-decoration: none;" >
-                <div style="margin: auto; display: inline-flex;justify-content: space-between;">
-                {% if articles.has_previous %}
-                    <li  style="color: silver;"><a style="color: silver;" href="?{% if query %}q={{ query }}&{% endif %}page={{ articles.previous_page_number }}">&laquo;</a></li>
-                {% else %}
-                    <li class="disabled" style="color: silver;"><span>&laquo;</span></li>
-                {% endif %}
-
-                {% for i in articles.paginator.page_range %}
-                    {% if articles.number == i %}
-                        <li class="active" style="padding-top: 3px; margin-left: 5px; margin-right: 5px; color: black; background-color: white;border-radius: 5px; width: 30px;height: 30px; text-align: center;"><span > {{ i }} <span  class="sr-only">{current}</span></span></li>
-                    {% else %}
-                    <a style="color: white;"  href = "?{% if query %}q={{ query }}&{% endif %}page={{ i }}"> <li onmouseover="style.background='gray'" onmouseout="style.background='rgb(58, 57, 57)'" style="padding-top: 3px; margin-left: 5px; margin-right: 5px;  background-color: rgb(58, 57, 57);border-radius: 5px; width: 30px;height: 30px; text-align: center;" >{{ i }}</li></a>
-                    {% endif %}
-                {% endfor %}
-
-                {% if articles.has_next %}
-                    <li  ><a style="color: silver;" href="?{% if query %}q={{ query }}&{% endif %}page={{ articles.next_page_number }}">&raquo;</a></li>
-                {% else %}
-                    <li class="disabled"><span>&raquo;</span></li>
-                {% endif %}
-                </div>
-            </ul>
-
-        {% endif %}
     {% else %}
         <h2>NO QUERY  ERROR</h2>
     {% endif %}
